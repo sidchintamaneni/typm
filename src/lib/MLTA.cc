@@ -914,15 +914,15 @@ void MLTA::printTargets(FuncSet &FS, CallInst *CI) {
 
 	if (CI) {
 #ifdef PRINT_SOURCE_LINE
-		OP<<"[CallGraph] Indirect call: "<<*CI<<"\n";
-		OP<<CI->getModule()->getName()<<"\n";
+	//	OP<<"[CallGraph] Indirect call: "<<*CI<<"\n";
+	//	OP<<CI->getModule()->getName()<<"\n";
 #endif
 		printSourceCodeInfo(CI, "CALLER");
 		//WriteSourceInfoIntoFile(CI, "IcallInfo.txt");
 	}
-	OP<<"\n\t Indirect-call targets: ("<<FS.size()<<")\n";
+	OP<<"Indirect-call targets:"<<FS.size()<<"\n";
 	for (auto F : FS) {
-		if (F->isDeclaration()) {
+		if (F->isIntrinsic() || F->isDeclaration()) {
 			OP<<"ERROR: print declaration function: "<<F->getName()<<"\n";
 			continue;
 		}

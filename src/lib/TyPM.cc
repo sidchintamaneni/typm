@@ -330,7 +330,6 @@ void TyPM::findTargetTypesInInitializer(GlobalVariable * GV,
 
 				if (isa<ConstantPointerNull>(O))
 					continue;
-
 				Type *ETy = POTy->getPointerElementType();
 
 				if (isTargetTy(ETy)) {
@@ -1057,8 +1056,8 @@ void TyPM::getDependentModulesV(Value* TV, Module *M,
 	Type *TTy = Ty;
 	if (Outermost.first) {
 		TTy = Outermost.first;
-		OP<<"@@ Elevated type: "<<*(Ty)<<" ==> "<<*(TTy)<<"\n";
-		OP<<"@@ Field index: "<<Outermost.second<<"\n";
+//		OP<<"@@ Elevated type: "<<*(Ty)<<" ==> "<<*(TTy)<<"\n";
+//		OP<<"@@ Field index: "<<Outermost.second<<"\n";
 		while (TTy->isPointerTy())
 			TTy = TTy->getPointerElementType();
 	}
@@ -1079,8 +1078,8 @@ void TyPM::getDependentModulesV(Value* TV, Module *M,
 		if (storedTypeIdxMap[M].find(TTy) == storedTypeIdxMap[M].end()) {
 			set<Module *> &MSet = TargetDataAllocModules[typeHash(TTy)];
 			if (MSet.find(M) == MSet.end()) {
-				OP<<"!!! NO DEPENDENCE: "<<*TTy<<"\n";
-				printSourceCodeInfo(TV, "TYPE-ERR");
+//				OP<<"!!! NO DEPENDENCE: "<<*TTy<<"\n";
+//				printSourceCodeInfo(TV, "TYPE-ERR");
 			}
 		}
 	}
@@ -1157,7 +1156,7 @@ bool TyPM::resolveFunctionTargets() {
 
 					Ctx->Callees[CI].erase(Callee);
 #ifdef PRINT_ICALL_TARGET
-					printSourceCodeInfo(Callee, "REMOVED");
+				//	printSourceCodeInfo(Callee, "REMOVED");
 #endif
 				}
 				else { 

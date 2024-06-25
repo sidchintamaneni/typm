@@ -159,11 +159,13 @@ int main(int argc, char **argv) {
 	for (unsigned i = 0; i < InputFilenames.size(); ++i) {
 
 		LLVMContext *LLVMCtx = new LLVMContext();
+		LLVMCtx->setOpaquePointers(false);
 		std::unique_ptr<Module> M = parseIRFile(InputFilenames[i], Err, *LLVMCtx);
-
+		
 		if (M == NULL) {
 			OP << argv[0] << ": error loading file '"
 				<< InputFilenames[i] << "'\n";
+			Err.print(argv[0], errs());
 			continue;
 		}
 

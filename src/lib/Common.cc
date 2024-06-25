@@ -37,7 +37,7 @@ string getFileName(DILocation *Loc, DISubprogram *SP) {
 		FN = string(LINUX_SOURCE_KASE) + "/" + FN;
 		//FN = string(FIREFOX_SOURCE) + "/" + FN;
 	} else {
-		OP << "== Warning: please specify the path of source code.";
+//		OP << "== Warning: please specify the path of source code.";
 	}
 
 	return FN;
@@ -196,15 +196,12 @@ void printSourceCodeInfo(Value *V, string Tag) {
 
 	while(line[0] == ' ' || line[0] == '\t')
 		line.erase(line.begin());
-	OP << " ["
-		<< "\033[34m" << Tag << "\033[0m" << "] "
+//	OP << " ["
+//		<< "\033[34m" << Tag << "\033[0m" << "] "
+	OP << " [" << Tag << "] " 
 		<< FN
-		<< " +" << LineNo
+		<< ":" << LineNo
 		//#ifdef PRINT_SOURCE_LINE
-		<< " "
-		<< "\033[35m" << line << "\033[0m" <<'\n';
-	OP<<*I
-		//#endif
 		<<"\n";
 }
 
@@ -241,23 +238,19 @@ void printSourceCodeInfo(Function *F, string Tag) {
 		//FN = FN.substr(FN.find('/') + 1);
 		//FN = FN.substr(FN.find('/') + 1);
 
-		OP << " ["
-			<< "\033[34m" << Tag << "\033[0m" << "] "
+		//OP << " ["
+		//	<< "\033[34m" << Tag << "\033[0m" << "] "
+		OP << " [" << Tag << "] "
 			<< FN
-			<< " +" << SP->getLine()
-#ifdef PRINT_SOURCE_LINE
-			<< " "
-			<< F->getName() 
-			//<< "\033[35m" << line << "\033[0m" 
-#endif
+			<< ":" << SP->getLine()
 			<<'\n';
 	}
 #ifdef PRINT_SOURCE_LINE
 	else {
-		OP << " ["
-			<< "\033[34m" << "??" << "\033[0m" << "] "
-			//<< F->getParent()->getName()<<": "<<F->getName()<<'\n';
-			<< F->getName()<<'\n';
+	//	OP << " ["
+	//		<< "\033[34m" << "??" << "\033[0m" << "] "
+	//		//<< F->getParent()->getName()<<": "<<F->getName()<<'\n';
+	//		<< F->getName()<<'\n';
 	}
 #endif
 }
