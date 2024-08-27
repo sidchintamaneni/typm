@@ -91,7 +91,7 @@ void IterativeModulePass::run(ModuleList &modules) {
 			if (ret) {
 				++changed;
 	//			OP << "\t [CHANGED]\n";
-			} else
+			} 
 	//			OP << "\n";
 		}
 	//	OP << "[" << ID << "] Updated in " << changed << " modules.\n";

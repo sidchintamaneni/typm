@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+# directories that I need 
+# data/test_indirectcall_targets/test_indircall_targets_data
+
+TEST_INDIRECTCALL_TARGETS="../data/test_indirectcall_targets"
+
+make -j `nproc`
+
+if [ ! -d "$TEST_INDIRECTCALL_TARGETS" ]; then
+	mkdir -p "$TEST_INDIRECTCALL_TARGETS"
+fi
+./build/lib/kanalyzer @../data/TestBigFatBCFile.list 2> "${TEST_INDIRECTCALL_TARGETS}/test_indircall_targets_data"

@@ -136,7 +136,7 @@ void CallGraphPass::PhaseMLTA(Function *F) {
 				if (CI->isIndirectCall()) {
 
 #ifdef PRINT_ICALL_TARGET
-					printSourceCodeInfo(CI, "RESOLVING");
+					// printSourceCodeInfo(CI, "RESOLVING");
 #endif
 
 					//FuncSet FSBase = Ctx->sigFuncsMap[callHash(CI)];
@@ -148,7 +148,7 @@ void CallGraphPass::PhaseMLTA(Function *F) {
 #ifdef PRINT_ICALL_TARGET
 							if ((OutScopeFuncs.find(F) == OutScopeFuncs.end())
 									&& (StoredFuncs.find(F) != StoredFuncs.end())) {
-								printSourceCodeInfo(F, "REMOVED");
+							//	printSourceCodeInfo(F, "REMOVED");
 							}
 							else {
 								// TODO: may need to add it back, as the function is
@@ -158,7 +158,7 @@ void CallGraphPass::PhaseMLTA(Function *F) {
 						}
 					}
 #ifdef PRINT_ICALL_TARGET
-					printTargets(*FS, CI);
+	//				printTargets(*FS, CI);
 #endif
 				}
 				}
@@ -559,7 +559,7 @@ void CallGraphPass::PhaseMLTA(Function *F) {
 			++AnalysisPhase;
 			MIdx = 0;
 			if (AnalysisPhase <= MAX_PHASE_CG) {
-				OP<<"\n\n=== Move to phase "<<AnalysisPhase<<" ===\n\n";
+				//OP<<"\n\n=== Move to phase "<<AnalysisPhase<<" ===\n\n";
 				return true;
 			}
 		}

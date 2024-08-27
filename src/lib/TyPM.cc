@@ -1138,7 +1138,7 @@ bool TyPM::resolveFunctionTargets() {
 		newModuleCount += MSet.size();
 
 #ifdef PRINT_ICALL_TARGET
-		printSourceCodeInfo(CI, "RESOLVING");
+//		printSourceCodeInfo(CI, "RESOLVING");
 #endif
 		for (auto Callee : Ctx->Callees[CI]) {
 			Module *CalleeM = Callee->getParent();
@@ -1166,12 +1166,12 @@ bool TyPM::resolveFunctionTargets() {
 		}
 		mapDeclToActualFuncs(Ctx->Callees[CI]);
 #ifdef PRINT_ICALL_TARGET
-		printTargets(Ctx->Callees[CI], CI);
+//		printTargets(Ctx->Callees[CI], CI);
 #endif
 	}
 	if (Ctx->NumIndirectCallTargets > 0) {
 		time_t my_time = time(NULL);
-		OP<<"# TIME: "<<ctime(&my_time)<<"\n";
+		 // OP<<"# TIME: "<<ctime(&my_time)<<"\n";
 		cout<<"\n@@ Target Reduction: "
 			<<newCount<<"/"<<oldCount<<"/"
 			<<Ctx->NumIndirectCallTargets<< ", Reduction Rate: "
@@ -1288,7 +1288,7 @@ bool TyPM::resolveStructTargets() {
 	}
 
 	time_t my_time = time(NULL);
-	OP<<"# TIME: "<<ctime(&my_time)<<"\n";
+	// OP<<"# TIME: "<<ctime(&my_time)<<"\n";
 	cout<<"@@ Total stores: "<<StoreInstSet.size()<<"\n";
 	cout<<"@@ Critical stores: "<<criticalWrites<<"\n";
 	cout<<"\n@@ Target Reduction: "
