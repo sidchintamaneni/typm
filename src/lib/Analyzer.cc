@@ -65,16 +65,16 @@ cl::opt<int> PHASE(
 void IterativeModulePass::run(ModuleList &modules) {
 
 	ModuleList::iterator i, e;
-	OP << "[" << ID << "] Initializing " << modules.size() << " modules ";
+//	OP << "[" << ID << "] Initializing " << modules.size() << " modules ";
 	bool again = true;
 	while (again) {
 		again = false;
 		for (i = modules.begin(), e = modules.end(); i != e; ++i) {
 			again |= doInitialization(i->first);
-			OP << ".";
+			//OP << ".";
 		}
 	}
-	OP << "\n";
+	//OP << "\n";
 
 	unsigned iter = 0, changed = 1;
 	while (changed) {
@@ -83,21 +83,21 @@ void IterativeModulePass::run(ModuleList &modules) {
 		unsigned counter_modules = 0;
 		unsigned total_modules = modules.size();
 		for (i = modules.begin(), e = modules.end(); i != e; ++i) {
-			OP << "[" << ID << " / " << iter << "] ";
-			OP << "[" << ++counter_modules << " / " << total_modules << "] ";
-			OP << "[" << i->second << "]\n";
+	//		OP << "[" << ID << " / " << iter << "] ";
+	//		OP << "[" << ++counter_modules << " / " << total_modules << "] ";
+	//		OP << "[" << i->second << "]\n";
 
 			bool ret = doModulePass(i->first);
 			if (ret) {
 				++changed;
-				OP << "\t [CHANGED]\n";
+	//			OP << "\t [CHANGED]\n";
 			} else
-				OP << "\n";
+	//			OP << "\n";
 		}
-		OP << "[" << ID << "] Updated in " << changed << " modules.\n";
+	//	OP << "[" << ID << "] Updated in " << changed << " modules.\n";
 	}
 
-	OP << "[" << ID << "] Postprocessing ...\n";
+	// OP << "[" << ID << "] Postprocessing ...\n";
 	again = true;
 	while (again) {
 		again = false;
@@ -107,7 +107,7 @@ void IterativeModulePass::run(ModuleList &modules) {
 		}
 	}
 
-	OP << "[" << ID << "] Done!\n\n";
+//	OP << "[" << ID << "] Done!\n\n";
 }
 
 void PrintResults(GlobalContext *GCtx) {
@@ -127,18 +127,18 @@ void PrintResults(GlobalContext *GCtx) {
 			totalsize += curEle.second.size();
 		}
 	}
-	OP << "\n@@ Total number of final callees: " << totalsize << "\n";
-
-	OP<<"############## Result Statistics ##############\n";
-	cout<<"# Ave. Number of indirect-call targets: \t"<<std::setprecision(5)<<AveIndirectTargets<<"\n";
-	OP<<"# Number of indirect calls: \t\t\t"<<GCtx->IndirectCallInsts.size()<<"\n";
-	OP<<"# Number of indirect calls with targets: \t"<<GCtx->NumValidIndirectCalls<<"\n";
-	OP<<"# Number of indirect-call targets: \t\t"<<GCtx->NumIndirectCallTargets<<"\n";
-	OP<<"# Number of address-taken functions: \t\t"<<GCtx->AddressTakenFuncs.size()<<"\n";
-	OP<<"# Number of second layer calls: \t\t"<<GCtx->NumSecondLayerTypeCalls<<"\n";
-	OP<<"# Number of second layer targets: \t\t"<<GCtx->NumSecondLayerTargets<<"\n";
-	OP<<"# Number of first layer calls: \t\t\t"<<GCtx->NumFirstLayerTypeCalls<<"\n";
-	OP<<"# Number of first layer targets: \t\t"<<GCtx->NumFirstLayerTargets<<"\n";
+//	OP << "\n@@ Total number of final callees: " << totalsize << "\n";
+//
+//	OP<<"############## Result Statistics ##############\n";
+//	cout<<"# Ave. Number of indirect-call targets: \t"<<std::setprecision(5)<<AveIndirectTargets<<"\n";
+//	OP<<"# Number of indirect calls: \t\t\t"<<GCtx->IndirectCallInsts.size()<<"\n";
+//	OP<<"# Number of indirect calls with targets: \t"<<GCtx->NumValidIndirectCalls<<"\n";
+//	OP<<"# Number of indirect-call targets: \t\t"<<GCtx->NumIndirectCallTargets<<"\n";
+//	OP<<"# Number of address-taken functions: \t\t"<<GCtx->AddressTakenFuncs.size()<<"\n";
+//	OP<<"# Number of second layer calls: \t\t"<<GCtx->NumSecondLayerTypeCalls<<"\n";
+//	OP<<"# Number of second layer targets: \t\t"<<GCtx->NumSecondLayerTargets<<"\n";
+//	OP<<"# Number of first layer calls: \t\t\t"<<GCtx->NumFirstLayerTypeCalls<<"\n";
+//	OP<<"# Number of first layer targets: \t\t"<<GCtx->NumFirstLayerTargets<<"\n";
 
 }
 
@@ -154,7 +154,7 @@ int main(int argc, char **argv) {
 	SMDiagnostic Err;
 
 	// Loading modules
-	OP << "Total " << InputFilenames.size() << " file(s)\n";
+	//OP << "Total " << InputFilenames.size() << " file(s)\n";
 
 	for (unsigned i = 0; i < InputFilenames.size(); ++i) {
 

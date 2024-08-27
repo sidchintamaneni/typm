@@ -234,7 +234,7 @@ void CallGraphPass::PhaseMLTA(Function *F) {
 
 	bool CallGraphPass::doInitialization(Module *M) {
 
-		OP<<"#"<<MIdx<<" Initializing: "<<M->getName()<<"\n";
+		//OP<<"#"<<MIdx<<" Initializing: "<<M->getName()<<"\n";
 
 		++ MIdx;
 
@@ -399,7 +399,7 @@ void CallGraphPass::PhaseMLTA(Function *F) {
 		++ MIdx;
 		if (Ctx->Modules.size() == MIdx) {
 			// Finally map declaration functions to actual functions
-			OP<<"Mapping declaration functions to actual ones...\n";
+			//OP<<"Mapping declaration functions to actual ones...\n";
 			Ctx->NumIndirectCallTargets = 0;
 			for (auto CI : CallSet) {
 				mapDeclToActualFuncs(Ctx->Callees[CI]);

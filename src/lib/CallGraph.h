@@ -40,7 +40,7 @@ class CallGraphPass :
 				MIdx = 0;
 
 				time_t my_time = time(NULL);
-				OP<<"# TIME: "<<ctime(&my_time)<<"\n";
+				//OP<<"# TIME: "<<ctime(&my_time)<<"\n";
 			}
 
 		virtual bool doInitialization(llvm::Module *);
