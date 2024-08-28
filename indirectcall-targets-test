@@ -5,6 +5,7 @@
 
 TEST_INDIRECTCALL_TARGETS="../data/test_indirectcall_targets"
 
+make clean
 make -j `nproc`
 
 if [ ! -d "$TEST_INDIRECTCALL_TARGETS" ]; then

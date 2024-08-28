@@ -1,0 +1,12 @@
+#!/bin/bash -e
+
+
+INDIRECTCALL_TARGETS="../data/indirectcall_targets"
+
+make clean
+make -j `nproc`
+
+if [ ! -d "$INDIRECTCALL_TARGETS" ]; then
+	mkdir -p "$INDIRECTCALL_TARGETS"
+fi
+./build/lib/kanalyzer @../data/TyPMBCFileNoDrivers.list 2> "${INDIRECTCALL_TARGETS}/indircall_targets_data"
